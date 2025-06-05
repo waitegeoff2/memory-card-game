@@ -12,9 +12,19 @@ let cardOrder = [] //STATE (this is where you put the cards and then put it into
 //https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg
 //identifier is thing.image_id
 
-function handleClick(ID) {
+function handleClick(id) {
+    console.log(id);
+    //if id matches something already in array
+    //end game
+
+    if(cardOrder.includes(id)) {
+        console.log("game failed")
+    } else {
+        cardOrder.push(id)
+    }
     
-    console.log(ID);
+    console.log(cardOrder)
+    
     //when someone clicks a card, take that card and put it into an array of chosen card (useState?) WITH AN INDEX
     //update score
     //run randomizecard again
@@ -43,6 +53,7 @@ function randomizeArr(array) {
 }
 
 export default function DisplayRandomCards({cards}) {
+    const [chosenCards, setChosenCards] = useState([]);
     //TWO STEPS: randomize the array and display it (each on has an onclick)
     //randomize array
     console.log(cards)
@@ -54,11 +65,12 @@ export default function DisplayRandomCards({cards}) {
     let cardOneURL = newArray[0].image_id
     let cardOneID = newArray[0].id
     let cardTwoURL = newArray[1].image_id
+    let cardTwoID = newArray[1].id
 
     return (
         <div className="card-tiles">
             <img src= {`https://www.artic.edu/iiif/2/${cardOneURL}/full/843,/0/default.jpg`} onClick={() => handleClick(cardOneID)}/>
-            <img src= {`https://www.artic.edu/iiif/2/${cardTwoURL}/full/843,/0/default.jpg`}/>
+            <img src= {`https://www.artic.edu/iiif/2/${cardTwoURL}/full/843,/0/default.jpg`} onClick={() => handleClick(cardTwoID)}/>
         </div>
     )
 
