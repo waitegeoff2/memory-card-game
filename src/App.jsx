@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import DisplayRandomCards from './components/displayCards';
 
 function App() {
 
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState();
 
   //STATE FOR CARDS set to null (update when you fetch them)
   //STEP ONE, DO THIS FIRST TMRW, FILL THE CARD ARRAY WITH STUFF YOU FETCH BELOW, pass it into the display card function as a prop
@@ -21,16 +22,13 @@ function App() {
           setCards(data.data)
           
         })
-      console.log("use effect ran");
     }, []
   );
-
-  console.log(cards)
 
   return (
     <>
      <div>
-      
+        {cards && <DisplayRandomCards cards={cards} />}      
      </div>
     </>
   )

@@ -20,8 +20,44 @@ function cardArray() {
     //function to build cardarray
 }
 
-export default function displayRandomCards(propcards) {
+function randomizeArr(array) {
+    
+    let newArray = [...array];
+    let currentIndex = newArray.length;
+
+    while (currentIndex != 0) {
+
+    // Pick a remaining element
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [newArray[currentIndex], newArray[randomIndex]] = [
+      newArray[randomIndex], newArray[currentIndex]];
+  }
+  return newArray;
+}
+
+export default function DisplayRandomCards({cards}) {
     //TWO STEPS: randomize the array and display it (each on has an onclick)
+    //randomize array
+    console.log(cards)
+
+    let newArray = randomizeArr(cards);
+    console.log(newArray)
+
+    let cardOne = newArray[0];
+    let cardOneURL = newArray[0].image_id
+    let cardTwoURL = newArray[1].image_id
+
+    return (
+        <div className="card-tiles">
+            <img src= {`https://www.artic.edu/iiif/2/${cardOneURL}/full/843,/0/default.jpg`}/>
+            <img src= {`https://www.artic.edu/iiif/2/${cardTwoURL}/full/843,/0/default.jpg`}/>
+        </div>
+    )
+
+
 
     //take array of cards
     //randomize order and SETSTATE in array
