@@ -1,17 +1,21 @@
+import { useState } from 'react';
 import '../styles/displayCardsStyles.css'
+
 
 //to store the cards the person has already chosen
 //map it to prevent duplicates
 //length it to count current score
-let chosenCards = []; //STATE
+
 let cardOrder = [] //STATE (this is where you put the cards and then put it into the array)
 
 
 //https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg
 //identifier is thing.image_id
 
-function handleClick () {
-    //when someone clicks a card, take that card and put it into an array of chosen card (useState?)
+function handleClick(ID) {
+    
+    console.log(ID);
+    //when someone clicks a card, take that card and put it into an array of chosen card (useState?) WITH AN INDEX
     //update score
     //run randomizecard again
 }
@@ -21,7 +25,7 @@ function cardArray() {
 }
 
 function randomizeArr(array) {
-    
+
     let newArray = [...array];
     let currentIndex = newArray.length;
 
@@ -48,11 +52,12 @@ export default function DisplayRandomCards({cards}) {
 
     let cardOne = newArray[0];
     let cardOneURL = newArray[0].image_id
+    let cardOneID = newArray[0].id
     let cardTwoURL = newArray[1].image_id
 
     return (
         <div className="card-tiles">
-            <img src= {`https://www.artic.edu/iiif/2/${cardOneURL}/full/843,/0/default.jpg`}/>
+            <img src= {`https://www.artic.edu/iiif/2/${cardOneURL}/full/843,/0/default.jpg`} onClick={() => handleClick(cardOneID)}/>
             <img src= {`https://www.artic.edu/iiif/2/${cardTwoURL}/full/843,/0/default.jpg`}/>
         </div>
     )
