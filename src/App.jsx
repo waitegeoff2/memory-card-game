@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import DisplayRandomCards from './components/displayCards';
+import Header from './components/header';
 
 function App() {
 
   const [cards, setCards] = useState(null);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
-  //this will run when component first renders, DO I WANT TO RANDOMIZE HERE??
+//ADD LOADING
   useEffect(
     () => {
       fetch('https://picsum.photos/v2/list?page=2&limit=10') 
@@ -27,7 +29,8 @@ function App() {
      <div>
         {/* this component randomizes the cards. once a card is clicked, it resets */}
         {/* PASS SCORE IN THERE TO UPDATE IT */}
-        {cards && <DisplayRandomCards cards={cards} score={score} setScore={setScore}/>}      
+        <Header score={score} highScore={highScore} />
+        {cards && <DisplayRandomCards cards={cards} score={score} setScore={setScore} highScore={highScore} setHighScore={setHighScore}/>}      
      </div>
     </>
   )

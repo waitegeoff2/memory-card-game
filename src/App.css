@@ -2,3 +2,11 @@
   margin: 0;
   padding: 0;
 }
+
+h1, h2, p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: rgb(170, 198, 170);
+}

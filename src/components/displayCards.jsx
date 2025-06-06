@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import '../styles/displayCardsStyles.css'
 
-export default function DisplayRandomCards({cards, score, setScore}) {
+export default function DisplayRandomCards({cards, score, setScore, highScore, setHighScore}) {
     const [chosenCards, setChosenCards] = useState([]);
-    const [highScore, setHighScore] = useState(0);
     setScore(chosenCards.length)
     console.log(score)
 
-    //MOVE THIS SOMEWHERE? so it can run this component again????
+    //on click, update chosen cards, end game when same card chosen twice. 
+    //update high score if current score is higher
     function handleClick(id) {
 
         if(chosenCards.includes(id)) {
@@ -50,9 +50,7 @@ export default function DisplayRandomCards({cards, score, setScore}) {
     let newArray = randomizeArr(cardArray)
     console.log(newArray) 
 
-    //TWO STEPS: randomize the array and display it (each on has an onclick)
-    //randomize array
-
+    //card variables
     let cardOneURL = newArray[0].download_url
     let cardOneID = newArray[0].id
     let cardTwoURL = newArray[1].download_url
@@ -76,16 +74,6 @@ export default function DisplayRandomCards({cards, score, setScore}) {
 
     return (
         <div className="card-game">
-            <div className="header">
-                <div className="title">
-                    <h1 className="game-title">Memory Game</h1>
-                    <h2 className="subtitle">Click pictures, but don't click the same one twice!</h2>
-                </div>
-                <div className="scores">
-                    <div className="score">Score: {score}</div>
-                    <div className="high-score">High score: {highScore}</div>
-                </div>
-            </div>
             <div className="card-tiles">
                 <div className="img-container">
                     <img src= {cardOneURL} onClick={() => handleClick(cardOneID)}/>
