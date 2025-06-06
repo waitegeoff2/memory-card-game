@@ -45,7 +45,6 @@ export default function DisplayRandomCards({cards, score, setScore, highScore, s
         }
 
         return newArray;
-        //SETCARDS with newarray
     }
 
     let cardArray = [...cards]
