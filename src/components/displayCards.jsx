@@ -1,28 +1,19 @@
 import { useState } from 'react';
 import '../styles/displayCardsStyles.css'
 
-let cardOrder = [] //STATE (this is where you put the cards and then put it into the array)
-
-//https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg
-//identifier is thing.image_id
-
 export default function DisplayRandomCards({cards, score}) {
     const [chosenCards, setChosenCards] = useState([]);
 
     //MOVE THIS SOMEWHERE? so it can run this component again????
     function handleClick(id) {
-        console.log(id);
-        //if id matches something already in array
-        //end game
-        let newChosen = [...chosenCards]
 
-        if(newChosen.includes(id)) {
-            console.log("game failed")
-            console.log(chosenCards)
+        if(chosenCards.includes(id)) {
+            alert("game failed")
+            setChosenCards([])            
         } else {
+            let newChosen = [...chosenCards]
             newChosen.push(id)
-            setChosenCards(newChosen)
-            console.log(chosenCards)
+            setChosenCards(newChosen)            
         }
         
         console.log(chosenCards)
@@ -51,28 +42,62 @@ export default function DisplayRandomCards({cards, score}) {
     //randomize array
 
     let newArray = randomizeArr(cards);
-    console.log(newArray)
 
-    let cardOne = newArray[0];
-    let cardOneURL = newArray[0].image_id
+    let cardOneURL = newArray[0].download_url
     let cardOneID = newArray[0].id
-    let cardTwoURL = newArray[1].image_id
+    let cardTwoURL = newArray[1].download_url
     let cardTwoID = newArray[1].id
+    let cardThreeURL = newArray[2].download_url
+    let cardThreeID = newArray[2].id
+    let cardFourURL = newArray[3].download_url
+    let cardFourID = newArray[3].id
+    let cardFiveURL = newArray[4].download_url
+    let cardFiveID = newArray[4].id
+    let cardSixURL = newArray[5].download_url
+    let cardSixID = newArray[5].id
+    let cardSevenURL = newArray[6].download_url
+    let cardSevenID = newArray[6].id
+    let cardEightURL = newArray[7].download_url
+    let cardEightID = newArray[7].id
+    let cardNineURL = newArray[8].download_url
+    let cardNineID = newArray[8].id
+    let cardTenURL = newArray[9].download_url
+    let cardTenID = newArray[9].id
 
     return (
         <div className="card-tiles">
-            <img src= {`https://www.artic.edu/iiif/2/${cardOneURL}/full/843,/0/default.jpg`} onClick={() => handleClick(cardOneID)}/>
-            <img src= {`https://www.artic.edu/iiif/2/${cardTwoURL}/full/843,/0/default.jpg`} onClick={() => handleClick(cardTwoID)}/>
+            <div className="img-container">
+                <img src= {cardOneURL} onClick={() => handleClick(cardOneID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardTwoURL} onClick={() => handleClick(cardTwoID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardThreeURL} onClick={() => handleClick(cardThreeID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardFourURL} onClick={() => handleClick(cardFourID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardFiveURL} onClick={() => handleClick(cardFiveID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardSixURL} onClick={() => handleClick(cardSixID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardSevenURL} onClick={() => handleClick(cardSevenID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardEightURL} onClick={() => handleClick(cardEightID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardNineURL} onClick={() => handleClick(cardNineID)}/>
+            </div>
+            <div className="img-container">
+                <img src= {cardTenURL} onClick={() => handleClick(cardTenID)}/>
+            </div>
+
         </div>
     )
-
-
-
-    //take array of cards
-    //randomize order and SETSTATE in array
-        //const card1 = cardorder[1]
-            //array.map(item) => return <div>{item}<div> (MAYBE YOU JUST NEED THIS, you're just mapping the new array each time)
-        //etc.
-    //return divs with random order of cards. onclick {function }
 }
 
