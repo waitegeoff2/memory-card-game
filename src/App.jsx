@@ -6,14 +6,8 @@ function App() {
 
   const [cards, setCards] = useState(null);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
 
-  //SET THE CARDS ARRAY HERE AND PASS IT IN. DO IT WITH A NEW API AND JUST GET 10 CARD OBJECTS
-
-  //NEXT STEP: find better image API. fetch from there, grab 10 image objects. setCards to those 10 objects
-  //then pass those 10 cards into displayrandomcards and run it
-
-  //this will run when component first renders, fetch some data
+  //this will run when component first renders, DO I WANT TO RANDOMIZE HERE??
   useEffect(
     () => {
       fetch('https://picsum.photos/v2/list?page=2&limit=10') 
@@ -23,7 +17,7 @@ function App() {
         .then((data) => {
           setCards([data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]])          
         })
-    }, []);
+  }, []);
 
     //randomize here and then pass down
   console.log(cards)

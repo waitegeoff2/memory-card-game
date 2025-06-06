@@ -3,6 +3,7 @@ import '../styles/displayCardsStyles.css'
 
 export default function DisplayRandomCards({cards, score, setScore}) {
     const [chosenCards, setChosenCards] = useState([]);
+    const [highScore, setHighScore] = useState(0);
     setScore(chosenCards.length)
     console.log(score)
 
@@ -17,6 +18,10 @@ export default function DisplayRandomCards({cards, score, setScore}) {
             let newChosen = [...chosenCards]
             newChosen.push(id)
             setChosenCards(newChosen)            
+        }
+
+        if(score > highScore) {
+            setHighScore(score)
         }
         
         console.log(chosenCards)
@@ -76,7 +81,10 @@ export default function DisplayRandomCards({cards, score, setScore}) {
                     <h1 className="game-title">Memory Game</h1>
                     <h2 className="subtitle">Click pictures, but don't click the same one twice!</h2>
                 </div>
-                <div className="score">Score: {score}</div>
+                <div className="scores">
+                    <div className="score">Score: {score}</div>
+                    <div className="high-score">High score: {highScore}</div>
+                </div>
             </div>
             <div className="card-tiles">
                 <div className="img-container">
