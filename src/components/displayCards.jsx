@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import '../styles/displayCardsStyles.css'
 
-export default function DisplayRandomCards({cards, score}) {
+export default function DisplayRandomCards({cards, score, setScore}) {
     const [chosenCards, setChosenCards] = useState([]);
+    setScore(chosenCards.length)
+    console.log(score)
 
     //MOVE THIS SOMEWHERE? so it can run this component again????
     function handleClick(id) {
 
         if(chosenCards.includes(id)) {
             alert("game failed")
-            setChosenCards([])            
+            setChosenCards([])    
+            setScore(0)        
         } else {
             let newChosen = [...chosenCards]
             newChosen.push(id)
@@ -38,10 +41,12 @@ export default function DisplayRandomCards({cards, score}) {
         //SETCARDS with newarray
     }
 
+    let cardArray = [...cards]
+    let newArray = randomizeArr(cardArray)
+    console.log(newArray) 
+
     //TWO STEPS: randomize the array and display it (each on has an onclick)
     //randomize array
-
-    let newArray = randomizeArr(cards);
 
     let cardOneURL = newArray[0].download_url
     let cardOneID = newArray[0].id
@@ -65,38 +70,47 @@ export default function DisplayRandomCards({cards, score}) {
     let cardTenID = newArray[9].id
 
     return (
-        <div className="card-tiles">
-            <div className="img-container">
-                <img src= {cardOneURL} onClick={() => handleClick(cardOneID)}/>
+        <div className="card-game">
+            <div className="header">
+                <div className="title">
+                    <h1 className="game-title">Memory Game</h1>
+                    <h2 className="subtitle">Click pictures, but don't click the same one twice!</h2>
+                </div>
+                <div className="score">Score: {score}</div>
             </div>
-            <div className="img-container">
-                <img src= {cardTwoURL} onClick={() => handleClick(cardTwoID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardThreeURL} onClick={() => handleClick(cardThreeID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardFourURL} onClick={() => handleClick(cardFourID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardFiveURL} onClick={() => handleClick(cardFiveID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardSixURL} onClick={() => handleClick(cardSixID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardSevenURL} onClick={() => handleClick(cardSevenID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardEightURL} onClick={() => handleClick(cardEightID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardNineURL} onClick={() => handleClick(cardNineID)}/>
-            </div>
-            <div className="img-container">
-                <img src= {cardTenURL} onClick={() => handleClick(cardTenID)}/>
-            </div>
+            <div className="card-tiles">
+                <div className="img-container">
+                    <img src= {cardOneURL} onClick={() => handleClick(cardOneID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardTwoURL} onClick={() => handleClick(cardTwoID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardThreeURL} onClick={() => handleClick(cardThreeID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardFourURL} onClick={() => handleClick(cardFourID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardFiveURL} onClick={() => handleClick(cardFiveID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardSixURL} onClick={() => handleClick(cardSixID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardSevenURL} onClick={() => handleClick(cardSevenID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardEightURL} onClick={() => handleClick(cardEightID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardNineURL} onClick={() => handleClick(cardNineID)}/>
+                </div>
+                <div className="img-container">
+                    <img src= {cardTenURL} onClick={() => handleClick(cardTenID)}/>
+                </div>
 
+            </div>
         </div>
     )
 }

@@ -1,3 +1,13 @@
+.card-game {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .card-tiles {
     display: flex;
     flex-wrap: wrap;
