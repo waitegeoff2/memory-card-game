@@ -5,22 +5,24 @@ import DisplayRandomCards from './components/displayCards';
 function App() {
 
   const [cards, setCards] = useState();
+  const [score, setScore] = useState(0);
 
-  //STATE FOR CARDS set to null (update when you fetch them)
-  //STEP ONE, DO THIS FIRST TMRW, FILL THE CARD ARRAY WITH STUFF YOU FETCH BELOW, pass it into the display card function as a prop
+  //SET THE CARDS ARRAY HERE AND PASS IT IN. DO IT WITH A NEW API AND JUST GET 10 CARD OBJECTS
 
-  //function to fetch the data from API
-  //fetch 10 photos and give them ids
+  //NEXT STEP: find better image API. fetch from there, grab 10 image objects. setCards to those 10 objects
+  //then pass those 10 cards into displayrandomcards and run it
+
   //this will run when component first renders, fetch some data
   useEffect(
     () => {
-      fetch('https://api.artic.edu/api/v1/artworks')
+      fetch('https://picsum.photos/v2/list?page=2&limit=10')
         .then(response => {
           return response.json();
         })
         .then((data) => {
-          setCards(data.data)
-          
+          // setCards(data.data)
+          console.log(data)
+          //put 10 of these into CARDS -> SETCARDS
         })
     }, []
   );
@@ -28,7 +30,9 @@ function App() {
   return (
     <>
      <div>
-        {cards && <DisplayRandomCards cards={cards} />}      
+        {/* this component randomizes the cards. once a card is clicked, it resets */}
+        {/* PASS SCORE IN THERE TO UPDATE IT */}
+        {/* {cards && <DisplayRandomCards cards={cards} />}       */}
      </div>
     </>
   )

@@ -1,19 +1,12 @@
 import { useState } from 'react';
 import '../styles/displayCardsStyles.css'
 
-
-//to store the cards the person has already chosen
-//map it to prevent duplicates
-//length it to count current score
-
 let cardOrder = [] //STATE (this is where you put the cards and then put it into the array)
-
-
 
 //https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg
 //identifier is thing.image_id
 
-export default function DisplayRandomCards({cards}) {
+export default function DisplayRandomCards({cards, score}) {
     const [chosenCards, setChosenCards] = useState([]);
 
     //MOVE THIS SOMEWHERE? so it can run this component again????
@@ -21,16 +14,21 @@ export default function DisplayRandomCards({cards}) {
         console.log(id);
         //if id matches something already in array
         //end game
+        let newChosen = [...chosenCards]
 
-        if(cardOrder.includes(id)) {
+        if(newChosen.includes(id)) {
             console.log("game failed")
+            console.log(chosenCards)
         } else {
-            cardOrder.push(id)
+            newChosen.push(id)
+            setChosenCards(newChosen)
+            console.log(chosenCards)
         }
         
-        console.log(cardOrder)
+        console.log(chosenCards)
     }
 
+    //randomize the array each time to display on screen in different order
     function randomizeArr(array) {
         let newArray = [...array];
         let currentIndex = newArray.length;
@@ -46,6 +44,7 @@ export default function DisplayRandomCards({cards}) {
         }
 
         return newArray;
+        //SETCARDS with newarray
     }
 
     //TWO STEPS: randomize the array and display it (each on has an onclick)
