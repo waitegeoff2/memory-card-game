@@ -7,6 +7,10 @@ h1, h2, p {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+p {
+  font-weight: bold;
+}
+
 body {
   background-color: rgb(170, 198, 170);
 }

@@ -1,0 +1,15 @@
+.header {
+    padding: 20px;
+}
+
+.title {
+    padding: 8px;
+    border-radius: 5px; 
+    text-shadow: 5px 5px 5px rgb(137, 137, 137);
+
+}
+
+.scores {
+    text-shadow: 5px 5px 5px rgb(137, 137, 137);
+  
+}

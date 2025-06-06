@@ -4,7 +4,6 @@ import '../styles/displayCardsStyles.css'
 export default function DisplayRandomCards({cards, score, setScore, highScore, setHighScore}) {
     const [chosenCards, setChosenCards] = useState([]);
     setScore(chosenCards.length)
-    console.log(score)
 
     //on click, update chosen cards, end game when same card chosen twice. 
     //update high score if current score is higher
@@ -12,19 +11,22 @@ export default function DisplayRandomCards({cards, score, setScore, highScore, s
 
         if(chosenCards.includes(id)) {
             alert("game failed")
-            setChosenCards([])    
-            setScore(0)        
+            highScoreUpdate(score)
+            setChosenCards([])  
+            setScore(0)
+
         } else {
             let newChosen = [...chosenCards]
             newChosen.push(id)
             setChosenCards(newChosen)            
         }
 
-        if(score > highScore) {
+    }
+
+    function highScoreUpdate(score) {
+        if(score >= highScore) {
             setHighScore(score)
         }
-        
-        console.log(chosenCards)
     }
 
     //randomize the array each time to display on screen in different order
@@ -48,7 +50,6 @@ export default function DisplayRandomCards({cards, score, setScore, highScore, s
 
     let cardArray = [...cards]
     let newArray = randomizeArr(cardArray)
-    console.log(newArray) 
 
     //card variables
     let cardOneURL = newArray[0].download_url
