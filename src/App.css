@@ -10,3 +10,9 @@ h1, h2, p {
 body {
   background-color: rgb(170, 198, 170);
 }
+
+.loading {
+  display: flex;
+  justify-self: center;
+  margin-top: 20%;
+}
